@@ -99,7 +99,7 @@ workspace %  vi `/.bash_profile
 workspace %  vi ~/.
 workspace %  vi ~/.bashrc
 
-export SCALA_HOME=/Users/lpddangal/workspace/scala-2.11.12
+export SCALA_HOME=/Users/falano/workspace/scala-2.11.12
 export PATH:$SCALA_HOME/bin:$PATH
 
 
@@ -109,7 +109,7 @@ workspace %  pwd
 /Users/lpddangal/workspace/spark-3.3.0-bin-hadoop3-scala2.13
 workspace %  vi ~/.bashrc
 
-export SPARK_HOME=/Users/lpddangal/workspace/spark-3.3.0-bin-hadoop3-scala2.13
+export SPARK_HOME=/Users/falano/workspace/spark-3.3.0-bin-hadoop3-scala2.13
 export PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 
 
@@ -119,7 +119,7 @@ workspace %  pwd
 /Users/lpddangal/workspace/hadoop-2.7.2
 workspace % ~/.bashrc
 
-export HADOOP_HOME=/Users/lpddangal/workspace/hadoop-2.7.2
+export HADOOP_HOME=/Users/falano/workspace/hadoop-2.7.2
 export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 
 
@@ -285,12 +285,12 @@ workspace % cp ~/Downloads/kafka_2.12-3.2.1.tgz .
 workspace % rm -r *.tgz
 workspace % cd kafka_2.12-3.2.1
 kafka  %  pwd
-/Users/lpddangal/workspace/kafka_2.12-3.2.1
+/Users/falano/workspace/kafka_2.12-3.2.1
 
 
 kafka  % vi ~/.bashrc
 
-export KAFKA_HOME=/Users/lpddangal/workspace/kafka_2.12-3.2.1
+export KAFKA_HOME=/Users/falano/workspace/kafka_2.12-3.2.1
 export PATH=$KAFKA_HOME/bin:$PATH
 
 
