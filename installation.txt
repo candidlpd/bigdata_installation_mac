@@ -1,0 +1,314 @@
+
+===================================================================================
+Link = https://www.youtube.com/watch?v=IsrwyHcUCx8&t=134s&ab_channel=DeekshithSN
+===================================================================================
+
+-----------------
+Java 8 download
+----------------
+Google --> Java 8 download in mac--> click in first link containing Java SE 8 Archive Downloads( JDK 8u211 and later) --> Java SE Developement Kit 8u333---> click link on macOS X64 DMG Installer (download jkd-8u333-macosx-x64.dmg)
+
+https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html
+
+javac -version
+java -version
+
+-----------------------
+download scala 2 11 12
+-----------------------
+
+Google --> download scala 2 11 12 ----> click in first link (Scala 2.11.12-The Scala Programming Language) ---> archive (scala-2.11.12.tgz) for mac -->download 
+
+https://www.scala-lang.org/download/2.11.12.html
+
+source .bashrc
+
+scala
+
+-------------------------
+Spark 
+---------------------------
+
+Google --> spark donwload --> first link ---> go for 2.4.4 latest version
+
+https://www.apache.org/dyn/closer.lua/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3-scala2.13.tgz
+
+source .bashrc
+
+spark-shell
+
+
+
+-----------------------
+Hadoop
+-----------------------
+
+Hadoop download index -->first link --> Index of /dish/hadoop/core -Apple Archives ---> hadoop 2.7.2 ---> hadoop-2.7.2.tar.gz-->download
+
+
+---------------------
+Intellij
+--------------------
+
+Google ---> intellij Download ---> first link --->community version
+
+
+-------------------------
+Testing all installation
+-------------------------
+
+java installation --->terminal--->java -version
+
+terminal-->mkdir workspace ---> cd workspace ---> 
+
+workdpace %  cp ~/Downloads/scala-2.11.12.tgz  . 
+workspace %  cp ~/Downloads/spark-2.4.4-bin-hadoop2.7.tgz  . 
+workspace %  cp ~/Downloads/hadoop-2.7.2.tar.gz  . 
+workspace %  cp ~/Downloads/jdk-8u333-macosx-x64.dmg  . 
+workspace %  cp ~/Downloads/ideaIC-2022.2.1.dmg  . 
+
+
+
+
+workspace %  tar -xvf scala-2.11.12.tgz
+workspace %  tar -xvf spark-2.4.4-bin-hadoop2.7.tgz
+workspace %  tar -xvf hadoop-2.7.2.tar.gz
+workspace %  rm -r *.gz
+workspace %  rm -r *.tgz
+
+
+
+
+export = PYSPARK_PYTHON=/usr/local/bin/python3
+export = PYSPARK_DRIVER_PYTHON=jupyter
+export = PYSPARK_DRIVER_PYTHON_OPTS = 'notebook'
+
+
+
+===================================
+update in environment variable
+=====================================
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_333.jdk/Contents/Home
+
+workspace %  cd scala-2.11.12.tgz
+workspace %  pwd
+/Users/lpddangal/workspace/scala-2.11.12
+workspace %  cd ..
+workspace %  vi `/.bash_profile
+workspace %  vi ~/.
+workspace %  vi ~/.bashrc
+
+export SCALA_HOME=/Users/lpddangal/workspace/scala-2.11.12
+export PATH:$SCALA_HOME/bin:$PATH
+
+
+
+workspace %  cd spark-3.3.0-bin-hadoop3-scala2.13
+workspace %  pwd
+/Users/lpddangal/workspace/spark-3.3.0-bin-hadoop3-scala2.13
+workspace %  vi ~/.bashrc
+
+export SPARK_HOME=/Users/lpddangal/workspace/spark-3.3.0-bin-hadoop3-scala2.13
+export PATH=$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
+
+
+
+workspace %  cd hadoop-2.7.2				
+workspace %  pwd
+/Users/lpddangal/workspace/hadoop-2.7.2
+workspace % ~/.bashrc
+
+export HADOOP_HOME=/Users/lpddangal/workspace/hadoop-2.7.2
+export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
+
+
+workspace %  java -version
+workspace %  cd ~
+workspace %  source .bashrc
+workspace %  scala
+workspace %  cntrk + C
+workspace %  spark-shell  
+
+workspace %  cd /workspace/hadoop-2.7.2
+workspace % ls
+workspace % cd etc/hadoop/
+workspace % ls
+workspace %  pwd
+
+
+==========================================
+Hadoop standlone cluster installation
+===========================================
+https://medium.com/beeranddiapers/installing-hadoop-on-mac-a9a3649dbc4d
+
+Google --> hadoop standalone cluster installation --- org.apache.hadoop officieal site (https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html) --> Pseudo-Distributed Operation ---->  copy in between configuration in etc/hadoop/core-site.xml
+
+hadoop-2.7.2  % cd etc/hadoop 
+hadoop-2.7.2 % etc/hadoop/hdfs-site.xml
+hadoop-2.7.2 %  vi core-site.xml
+
+
+ 	<property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+
+
+
+
+hadoop-2.7.2 %  vi hdfs-site.xml
+
+ 	<property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+
+
+hadoop-2.7.2 % etc/hadoop/yarn-site.xml
+hadoop-2.7.2 % vi yarn-site.xml
+
+<property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+
+
+hadoop-2.7.2 % mv mapred-site.xml.template mapred-site.xml
+hadoop-2.7.2 %  vi mapred-site.xml
+
+<property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+
+ hadoop-2.7.2 % vi hadoop-env.sh
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_333.jdk/Contents/Home/
+
+hadoop-2.7.2 % cd sbin
+
+start-dfs.sh && start-yarn.sh
+
+====================================
+ssh installation/ authorize ssh
+=================================
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/selinahui/.zprofile
+
+==================================
+Allowing homebrew permission
+====================================
+
+sudo chown -R "$USER":admin /usr/local
+sudo chown -R "$USER":admin /Library/Caches/Homebrew
+
+
+sudo chown -R $(whoami) $(brew --prefix)/*
+
+sudo chown -R $(whoami) /usr/local
+
+  sudo chown -R root:admin /usr/local
+
+  sudo chown -R "$USER":admin /usr/local/Cellar/*
+brew cleanup
+
+
+  brew cleanup
+
+brew doctor
+
+sudo mkdir /usr/local/Cellar
+sudo mkdir /usr/local/opt
+sudo chown -R $(whoami) /usr/local/Cellar
+sudo chown -R $(whoami) /usr/local/opt
+
+sudo chown -R $(whoami) /usr/local/lib /usr/local/sbin /usr/local/var /usr/local/Frameworks /usr/local/lib/pkgconfig /usr/local/share/locale
+
+sudo chown -R $(whoami) /usr/local/share/man/man5 /usr/local/share/man/man7
+
+sudo chown -R "$USER":admin /usr/local/Homebrew
+
+
+------------------------------
+Enabling root user via terminal
+------------------------------
+
+lpddangal@LPDs-MBP ~ % dsenableroot
+username = lpddangal
+user password: mac password
+root password: same password
+verify root password: same password
+
+dsenableroot:: ***Successfully enabled root user.
+
+
+
+
+
+links =  https://medium.com/beeranddiapers/installing-hadoop-on-mac-a9a3649dbc4d
+
+
+mac ---> system preferences -->sharing --> remote login -->all users
+
+mac % sudo systemsetup -setremotelogin on
+
+mac % ssh localhost
+hadoop-2.7.1 % ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+hadoop-2.7.1 % cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+hadoop-2.7.1 % chmod 0600 ~/.ssh/authorized_keys
+hadoop-2.7.1 % bin/hadoop namenoe -format
+hadoop-2.7.1 % sbin/start-all.sh
+hadoop-2.7.1 % bin/hdfs dfs -mkdir -p /user/WordCount
+hadoop-2.7.1 % bin/hdfs dfs -put ./NOTICE.txt /user/WordCount
+
+------------
+Hadoop GUI
+-------------
+Google search engine = http://localhost:50070/explorer.html#/ 
+/user/WordCount
+Go 
+
+
+=================================
+
+Kafka Installation in Mac
+=================================
+
+kafka downlaod index ---> first link official sites ---> latest kafka ------pick compatible version of kafka with spark e.g. if we choose 
+2.11 in spark...so chose 2.11 in kafka as well
+
+https://archive.apache.org/dist/kafka
+
+workspace % cp ~/Downloads/kafka_2.12-3.2.1.tgz .
+workspace % rm -r *.tgz
+workspace % cd kafka_2.12-3.2.1
+kafka  %  pwd
+/Users/lpddangal/workspace/kafka_2.12-3.2.1
+
+
+kafka  % vi ~/.bashrc
+
+export KAFKA_HOME=/Users/lpddangal/workspace/kafka_2.12-3.2.1
+export PATH=$KAFKA_HOME/bin:$PATH
+
+
+
+mac % source.bashrc  ( In new terminal )
+
+mac % start-dfs.sh && start-yarn.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
